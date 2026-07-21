@@ -7,9 +7,11 @@ public class Patterns {
 //        NumberSeriesTrianglePattern(5);
         //inverseTrianglePattern(4);
         //inverseNumberTrianglePattern(5);
-       // pyramidPattern(4);
+       //pyramidPattern(4);
         //inversePyramidPattern(4);
-        zeroOneTriangle(5);
+       // zeroOneTriangle(5);
+        //diamondShapePattern(4);
+        halfDiamondPattern(4);
     }
     // n -> number of line to be printed (row)
     /* 1
@@ -81,6 +83,12 @@ public class Patterns {
             System.out.println();
         }
     }
+    /*
+     *******
+      *****
+       ***
+        *
+     */
     static void inversePyramidPattern(int n){
         for (int i = 0; i<=n-1; i++){
             for (int j = 1; j<= i; j++){
@@ -96,6 +104,77 @@ public class Patterns {
         }
     }
 
+    // Diamond Pattern
+    /*   *
+        ***
+       *****
+      *******
+      ******* to exclude this line -> lower i=n-1
+       *****
+        ***
+         *
+     */   // follow the symmetry of both pyramid or
+
+    static void diamondShapePattern(int n){
+        // upper half
+        for (int i =1; i<=n; i++){
+            for (int j = 1; j<= n-i; j++){
+                System.out.print(" ");
+            }
+            for(int j=1; j<=2*i-1; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Lower half
+
+        for (int i=n; i>=1; i--){
+            for (int j=1; j<=n-i; j++){
+                System.out.print(" ");
+            }
+            for (int j=1; j<=2*i-1; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    /*  Half Diamond pattern
+         *
+         **
+         ***
+         ****
+         ***
+         **
+         *
+     */  // check symmetry -> top Triangle , bottom inverseTriangle(n-1) -> printing one less line
+
+    static void halfDiamondPattern(int n){
+        // upper half
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+        // lower half
+        for (int i=1; i<=n; i++){
+            for (int j=1; j<=n-i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    static void trianglePattern(int n) {
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
 
     static void zeroOneTriangle(int n){
         for (int i = 0; i<n; i++) {
@@ -104,11 +183,12 @@ public class Patterns {
             for (int j = 0; j<=i; j++){
                 System.out.print(start);
                 if (i != j) System.out.print(" ");
-                start = 1-start;
-            }
+                start = 1-start;   // if start = 0 -> 1-0=1
+            }                      // if start = 1 -> 1-1=0,  0 1 0 1 or 1 0 1 0 sequence
             System.out.println();
         }
     }
+
 }
 
 
