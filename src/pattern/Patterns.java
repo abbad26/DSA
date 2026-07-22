@@ -3,7 +3,7 @@ package pattern;
 public class Patterns {
     public static void main(String[] args) {
 
-//        NumberTrianglePattern(4);
+ //      columnSeriesNumberTrianglePattern(4);
 //        NumberSeriesTrianglePattern(5);
         //inverseTrianglePattern(4);
         //inverseNumberTrianglePattern(5);
@@ -11,13 +11,22 @@ public class Patterns {
         //inversePyramidPattern(4);
        // zeroOneTriangle(5);
         //diamondShapePattern(4);
-        halfDiamondPattern(4);
+        //halfDiamondPattern(4);
+        //numberPalindromePattern(4);
+        //increasingNumberPattern(4);
+//        alphabetTrianglePattern(5);
+//        inverseAlphabetPattern(5);
+        //rowSeriesTriangleAlphabetPattern(5);
+       // pyramidAlphabetPattern(5);
+        decreasingAlphabetTrianglePattern(5);
     }
     // n -> number of line to be printed (row)
     /* 1
        12
        123    */
-   static void NumberTrianglePattern(int n){
+   static void columnSeriesNumberTrianglePattern(int n){
+       // for Alphabet => char character = 'A'
+       //                 char character = 'A'+2 ->
         for (int i = 1; i<=n; i++) {
             for (int j =1; j <= i; j++) {
                 System.out.print(j);
@@ -188,6 +197,133 @@ public class Patterns {
             System.out.println();
         }
     }
+
+    // Some other advance pattern
+    /*
+        1      1
+        12    21
+        123  321
+        12344321
+     */
+    static void numberPalindromePattern(int n){
+
+        for (int i=1; i<=n; i++){
+            for (int j=1; j<=i; j++){
+                System.out.print(j);
+            }
+            for (int j=1; j<=2*(n-i); j++){
+                System.out.print(" ");
+            }
+            for (int j=i; j>=1; j--){
+                System.out.print(j);
+            }
+            System.out.println();
+        }
+    }
+    /*
+        1
+        2 3
+        4 5 6
+        7 8 9 10
+     */
+    static void increasingNumberPattern(int n){
+        int currentNumber = 1;
+        for (int i=1; i<=n; i++){
+            for (int j=1; j<=i; j++){
+                System.out.print(currentNumber);
+                System.out.print(" ");
+                currentNumber++;
+            }
+            System.out.println();
+        }
+    }
+    /*
+        A
+        AB
+        ABC
+        ABCD
+     */
+    static void alphabetTrianglePattern(int n){
+
+        for (int i=1; i<=n; i++){
+            //print characters from A to A + i - 1
+            for (char ch = 'A'; ch <= 'A'+i-1; ch++){
+                System.out.print(ch);
+            }
+            System.out.println();
+        }
+    }
+   /*
+      ABCD
+      ABC
+      AB
+      A
+    */
+    static void inverseAlphabetPattern(int n){
+        for (int i=n; i>=1; i--){
+            //print characters from A to A + i - 1
+            for (char ch = 'A'; ch <= 'A'+i-1; ch++){
+                System.out.print(ch);
+            }
+            System.out.println();
+        }
+    }
+   /*
+       A
+       BB
+       CCC
+       DDDD
+    */
+    static void rowSeriesTriangleAlphabetPattern(int n){
+        char ch = 'A';
+        for (int i=1; i<=n; i++){
+            //print characters from A to A + i - 1
+            for (int j = 1; j <= i; j++){
+                System.out.print((char) (ch + i-1));
+            }
+            System.out.println();
+        }
+    }
+    /*
+          A
+         ABA
+        ABCBA
+       ABCDCBA
+     */
+
+    static void pyramidAlphabetPattern(int n){
+
+        for ( int i=1; i<=n; i++){
+            for (int j=1; j<=n-i; j++) {
+                System.out.print(" ");
+            }
+                char ch = 'A';
+                for (int j=1; j<= (2*i-1); j++){
+                    System.out.print(ch);
+                    if (i > j) ch = (char)(ch +1);
+                    else ch = (char)(ch - 1);
+                }
+            System.out.println();
+        }
+    }
+    /*
+         E
+         DE
+         CDE
+         BCDE
+         ABCDE
+     */
+    static void decreasingAlphabetTrianglePattern(int n){
+        char element = (char)('A'+n-1);
+        for (int i = 1; i <= n; i++){
+            for (char ch =(char)(element-i+1); ch <= element; ch++){
+                System.out.print(ch);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
 
 }
 
