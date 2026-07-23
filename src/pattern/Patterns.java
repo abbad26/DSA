@@ -1,5 +1,7 @@
 package pattern;
 
+import static java.lang.Math.min;
+
 public class Patterns {
     public static void main(String[] args) {
 
@@ -18,7 +20,11 @@ public class Patterns {
 //        inverseAlphabetPattern(5);
         //rowSeriesTriangleAlphabetPattern(5);
        // pyramidAlphabetPattern(5);
-        decreasingAlphabetTrianglePattern(5);
+       // decreasingAlphabetTrianglePattern(5);
+        diamondSpacePattern(3);
+        //butterflyPattern(5);
+        //rectangleStarPattern(5);
+        rectangleNumber(5);
     }
     // n -> number of line to be printed (row)
     /* 1
@@ -318,6 +324,146 @@ public class Patterns {
         for (int i = 1; i <= n; i++){
             for (char ch =(char)(element-i+1); ch <= element; ch++){
                 System.out.print(ch);
+                System.out.print(" ");
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+        ******
+        **  **
+        *    *
+        *    *
+        **  **
+        ******
+     */
+    static void diamondSpacePattern(int n){
+
+        // upper half
+        for ( int i = 0; i < n; i++){
+            for (int j = 1; j <= n - i; j++){
+                System.out.print("*");
+            }
+            for (int j = 1; j <= 2 * i; j++ ){
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= n - i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Lower half
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            for (int j = 1; j <= 2 * n - 2 * i; j++ ){
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+    /*
+        *      *
+        **    **
+        ***  ***
+        ********
+        ***  ***
+        **    **
+        *      *
+     */
+
+    static void butterflyPattern(int n){
+
+        // upper half
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            for (int j = 1; j <= 2 * n - 2 * i; j++ ){
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+
+        // Lower half
+        for ( int i = 1; i < n; i++){
+            for (int j = 1; j <= n - i; j++){
+                System.out.print("*");
+            }
+            for (int j = 1; j <= 2 * i; j++ ){
+                System.out.print(" ");
+            }
+            for (int j = 1; j <= n - i; j++){
+                System.out.print("*");
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+        *****
+        *   *
+        *   *
+        *   *
+        *****
+     */
+
+    static void rectangleStarPattern(int n){
+        for (int i = 1; i <= n; i++){
+            if (i == 1 || i == n) {
+                for (int j = 1; j <= n; j++) {
+                    System.out.print("*");
+                }
+            }
+            else {
+                for (int j = 1; j <= n; j++){
+                    if (j == 1 || j ==n) System.out.print("*");
+                    else System.out.print(" ");
+                }
+            }
+            System.out.println();
+        }
+    }
+/*   n = 4
+     0123456
+   0 4444444
+   1 4333334
+   2 4322234
+   3 4321234
+   4 4322234
+   5 4333334
+   6 4444444
+     cell(i, j) -> (3,4) -> element = 2
+     top = i = 3
+     bottom = 2*n-2-i -> 2*4-2-3 = 3
+     left = j = 4
+     right = 2*n-2-j -> 2*4-2-4 = 2
+     element = (n - min(min(top, bottom), min(left, right)))
+             = (4-min(min(3,4),min(4,2)))
+             =(4-min(3,2))
+             = 4-2=> 2 = element at (3,4)
+ */
+
+
+    static void rectangleNumber(int n){
+        int size = 2 * n - 2;
+        for (int i = 0; i <= size; i++){
+            for (int j = 0; j <= size; j++){
+                // Distance of the current cell from all four edges
+                int top = i, bottom = (size) - i, left = j, right = (size) - j;
+                //minimum distance from any edge
+                int minDistance = min(min(top, bottom), min(left, right));
+
+                System.out.print(n - minDistance);
                 System.out.print(" ");
             }
             System.out.println();
