@@ -3,7 +3,7 @@ package maths;
 import java.util.Scanner;
 
 public class CountDigitsOfNumber {
-   static int DigitCount(int num){
+   static int digitCount(int num){
         int count = 0;
         if (num == 0) return 1;
         while (num != 0){
@@ -17,7 +17,7 @@ public class CountDigitsOfNumber {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter Number");
         int num = sc.nextInt();
-        int result =  DigitCount(num);
+        int result =  digitCount(num);
         System.out.println(result);
     }
 }
