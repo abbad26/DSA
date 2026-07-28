@@ -4,7 +4,9 @@ public class CountOddDigits {
 
     public static void main(String[] args) {
         //System.out.println(oddDigitCount(15));
-        System.out.println(oddDigitInRange(2,9));
+       // System.out.println(oddDigitInRange(2,9));
+       // System.out.println(reverseNumber(2584));
+        System.out.println(palindromeNumber(121));
     }
 
 
@@ -33,5 +35,25 @@ public class CountOddDigits {
         int nums = high - low + 1;  //  num=8-2+1 -> 7 / 2 = 3.5 -> 4
         if (low % 2 != 0 && high % 2 != 0) return nums/2 + 1;
         else return nums / 2;
+    }
+
+    // Reverse a Number
+    // 7532 -> 2357
+    static int reverseNumber(int num){
+        int revNum = 0;
+        while (num > 0){
+            int rem = num % 10;
+            num = num / 10;
+            revNum = revNum * 10 + rem;
+        }
+        return revNum;
+    }
+
+    // Palindrome number
+    // n = 151 , revNum = 151
+    // if ( n == revNum ) return true for palindrome
+    static boolean palindromeNumber(int num){
+        int revNum = reverseNumber(num);
+        return num == revNum;
     }
 }
