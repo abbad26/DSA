@@ -12,7 +12,9 @@ public class CountOddDigits {
        // System.out.println(largestDigit(4765));
        // System.out.println(factorial(6));
        // System.out.println(isArmstrong(153));
-        //System.out.println(perfectNumber(12));
+//        System.out.println(perfectNumber(28));
+//        System.out.println(perfectNumberOp(28));
+        System.out.println(isPrime(7));
 
     }
 
@@ -117,5 +119,36 @@ public class CountOddDigits {
         }
         return (sum == num);
     }
+    // T.C -> O(n)
 
+    // optimized code
+    // O(sqrt(n))
+    static boolean perfectNumberOp(int num){
+        int sum = 1;
+        if (num<=1)return false;
+        for (int i = 2; i*i <= num; i++){
+            if (num % i == 0){
+                sum = sum + i;
+                if (i != (num/i)) sum = sum + (num/i);
+            }
+        }
+        return (sum == num);
+    }
+
+    // Check Prime number
+    static boolean isPrime(int num){
+
+        // T.C -> O(n)
+//        if (num == 1) return false;
+//        for (int i = 2; i < num; i++){
+//            if (num % i == 0) return false;
+//        }
+//        return true;
+        // O(sqrt(n))
+        if (num == 1) return false;
+        for (int i = 2; i*i <= num; i++){
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
 }
