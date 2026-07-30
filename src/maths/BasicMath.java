@@ -1,8 +1,10 @@
 package maths;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
-public class CountOddDigits {
+public class BasicMath {
 
     public static void main(String[] args) {
         //System.out.println(oddDigitCount(15));
@@ -14,7 +16,12 @@ public class CountOddDigits {
        // System.out.println(isArmstrong(153));
 //        System.out.println(perfectNumber(28));
 //        System.out.println(perfectNumberOp(28));
-        System.out.println(isPrime(7));
+        //System.out.println(isPrime(2));
+       // System.out.println(countPrime(10));
+//        System.out.println(gcd(12, 32));
+//        System.out.println(gcdEucAlgo(12, 32));
+       // System.out.println(lcm(6,9));
+        System.out.println(countDivisor(15));
 
     }
 
@@ -145,10 +152,80 @@ public class CountOddDigits {
 //        }
 //        return true;
         // O(sqrt(n))
+
         if (num == 1) return false;
         for (int i = 2; i*i <= num; i++){
             if (num % i == 0) return false;
         }
         return true;
+    }
+
+    // count prime number till num
+    static int countPrime(int num){
+        int count = 0;
+        for (int i = 2; i <= num; i++){
+            if (isPrime(i)) count++;
+        }
+        return count;
+    }
+
+    // GCD -> n1 = 6, n2 = 12 -> divisor of n1 = 1,2,3,6 and divisor of n2 = 1,2,3,4,6
+    // T.c = O(min(n1,n2))
+    static int gcd(int n1, int n2){
+        int largestDiv = 1;
+
+        for (int i = 2; i <= Math.min(n1, n2); i++){
+            if (n1 % i == 0 && n2 % i == 0) largestDiv = i;
+        }
+        return largestDiv;
+    }
+    // M2 - Euclidean Algorithm -> gcd(n1, n2) = gcd(n2, n1 mod n2)
+    // T.C = O(log(min(n1,n2)))
+    static int gcdEucAlgo(int n1, int n2){
+
+        while (n1 != 0 && n2 != 0){
+
+            if (n1 > n2) n1 = n1 % n2;
+
+            else n2 = n2 % n1;
+
+        }
+        if (n2 == 0) return n1;
+        else return n2;
+    }
+
+    // LCM -> (3,5) -> 3*5 = 15, 5*3 =15 -> 15%3==0 && 15%5==0
+
+    static int lcm(int n1, int n2){
+//        int i =1;
+//        int maxNum = Math.max(n1, n2);
+//
+//        do {
+//            int multiple = i * maxNum;
+//            if (multiple % n1 == 0 && multiple % n2 == 0)return multiple;
+//            i++;
+//        }while (i >= 1);
+//        return -1; // T.C - O(n1*n2)
+
+        // by using gcd
+        // T.C -> O(log(min(n1,n2)))
+        int lcm = (n1*n2) / (gcdEucAlgo(n1, n2));
+        return lcm;
+    }
+
+    // count all divisor of number
+    // num = 9 -> divisor of 9 = 1,3,9
+
+    static ArrayList<Integer> countDivisor(int num){
+        ArrayList<Integer> arrayList = new ArrayList<>();
+
+        for (int i = 1; i <= num; i++){
+            if (num % i == 0){
+                arrayList.add(i);
+                Collections.sort(arrayList);
+            }
+        }
+        return arrayList;
+
     }
 }
