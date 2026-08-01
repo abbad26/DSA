@@ -1,6 +1,7 @@
 package maths;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public class BasicMath {
 //        System.out.println(gcd(12, 32));
 //        System.out.println(gcdEucAlgo(12, 32));
        // System.out.println(lcm(6,9));
-        System.out.println(countDivisor(15));
+        System.out.println(Arrays.toString(countDivisor(15)));
 
     }
 
@@ -216,16 +217,37 @@ public class BasicMath {
     // count all divisor of number
     // num = 9 -> divisor of 9 = 1,3,9
 
-    static ArrayList<Integer> countDivisor(int num){
+
+    static int[] countDivisor(int num){
         ArrayList<Integer> arrayList = new ArrayList<>();
 
-        for (int i = 1; i <= num; i++){
-            if (num % i == 0){
+        // Find all divisors
+        for (int i = 1; i <= num; i++) {
+            if (num % i == 0) {
                 arrayList.add(i);
-                Collections.sort(arrayList);
             }
         }
-        return arrayList;
 
+        // Convert ArrayList to int[]
+        int[] result = new int[arrayList.size()];
+
+        for (int i = 0; i < arrayList.size(); i++) {
+            result[i] = arrayList.get(i);
+        }
+
+        return result;
     }
+
+//    static ArrayList<Integer> countDivisor(int num){
+//        ArrayList<Integer> arrayList = new ArrayList<>();
+//
+//        for (int i = 1; i <= num; i++){
+//            if (num % i == 0){
+//                arrayList.add(i);
+//                Collections.sort(arrayList);
+//            }
+//        }
+//        return arrayList;
+//
+//    }
 }
