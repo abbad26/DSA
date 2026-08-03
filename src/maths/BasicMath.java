@@ -216,8 +216,6 @@ public class BasicMath {
 
     // count all divisor of number
     // num = 9 -> divisor of 9 = 1,3,9
-
-
     static int[] countDivisor(int num){
         ArrayList<Integer> arrayList = new ArrayList<>();
 
