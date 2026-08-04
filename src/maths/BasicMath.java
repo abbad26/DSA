@@ -26,7 +26,19 @@ public class BasicMath {
 
     }
 
+    // digit count
+    static int digitCount(int num){
+        int count = 0;
+        if (num == 0) return 1;
+        while (num != 0){
+            num = num / 10;
+            count = count + 1;
+        }
+        return count;
+    }
 
+
+    // odd digit count
     static int oddDigitCount(int num){
         int countOdd = 0;
 

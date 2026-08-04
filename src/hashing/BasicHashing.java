@@ -25,4 +25,5 @@ public class BasicHashing {
    // Every time it checks the whole array.
     // T.C -> O(n^2)
     // to overcome this we can use array
+
 }
