@@ -20,4 +20,7 @@ public class CountDigitsOfNumber {
         int result =  digitCount(num);
         System.out.println(result);
     }
-}
+
+
+    }
+

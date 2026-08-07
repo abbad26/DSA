@@ -22,7 +22,8 @@ public class BasicMath {
 //        System.out.println(gcd(12, 32));
 //        System.out.println(gcdEucAlgo(12, 32));
        // System.out.println(lcm(6,9));
-        System.out.println(Arrays.toString(countDivisor(15)));
+       // System.out.println(Arrays.toString(countDivisor(15)));
+        System.out.println(strongNumber(14));
 
     }
 
@@ -111,6 +112,22 @@ public class BasicMath {
         return fact;
     }
 
+    // Strong Number
+    // n = 145 -> 1!+4!+5!= 145 =n then n is a strong number
+    static String strongNumber(int num){
+        int sum = 0;
+        int original = num;
+        while (num > 0){
+            int lastDigit = num % 10;
+            int fact = 1;
+            for (int i = 1; i <= lastDigit; i++){
+                fact *= i;
+            }
+            sum += fact;
+            num = num / 10;
+        }
+        return (sum == original) ? "Yes" : "No";
+    }
     // Check if a number is Armstrong or not
     // num = 153 then 1^3+5^3+3^3 = num -> 153 (true)
 
