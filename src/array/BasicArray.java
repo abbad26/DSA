@@ -14,7 +14,8 @@ public class BasicArray {
         //System.out.println(sumOfArrayElements(arr, n));
         //System.out.println(countOfOddElement(arr, n));
        // System.out.println(checkSortedArray(arr, n));
-        reverseAnArray(arr, n);
+       // reverseAnArray(arr, n);
+        System.out.println(differenceOfSum(arr));
     }
 
     static int sumOfArrayElements(int arr[], int n){
@@ -105,5 +106,23 @@ public class BasicArray {
 
         }
         return true;
+    }
+
+    static int differenceOfSum(int[] nums){
+        int elSum = 0, digitSum = 0;
+
+        for (int i = 0; i < nums.length; i++){
+            elSum += nums[i]; // sum of elements
+
+            int num = nums[i];
+            // sum of digits
+            while (num > 0){
+                int lastDigit = num % 10;
+                digitSum += lastDigit;
+                num = num / 10;
+            }
+        }
+
+        return Math.abs(elSum - digitSum);
     }
 }

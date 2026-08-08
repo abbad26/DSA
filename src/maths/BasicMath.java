@@ -277,4 +277,27 @@ public class BasicMath {
 //        return arrayList;
 //
 //    }
+
+    //Input: nums = [1,2,3,4]
+    //Output: 0
+    //Explanation:
+    //The element sum of nums is 1 + 2 + 3 + 4 = 10.
+    //The digit sum of nums is 1 + 2 + 3 + 4 = 10.
+    //The absolute difference between the element sum and digit sum is |10 - 10| = 0.
+
+    static int differenceOfSum(int[] nums){
+        int elSum = 0, digitSum = 0;
+
+        for (int i = 0; i <= nums.length; i++){
+            elSum += nums[i];
+
+            while (nums[i] > 0){
+                int lastDigit = nums[i] % 10;
+                digitSum += lastDigit;
+                nums[i] = nums[i] / 10;
+            }
+        }
+
+        return Math.abs(elSum - digitSum);
+    }
 }
