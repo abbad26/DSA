@@ -23,7 +23,8 @@ public class BasicMath {
 //        System.out.println(gcdEucAlgo(12, 32));
        // System.out.println(lcm(6,9));
        // System.out.println(Arrays.toString(countDivisor(15)));
-        System.out.println(strongNumber(14));
+       // System.out.println(strongNumber(14));
+
 
     }
 
@@ -291,13 +292,44 @@ public class BasicMath {
         for (int i = 0; i <= nums.length; i++){
             elSum += nums[i];
 
-            while (nums[i] > 0){
-                int lastDigit = nums[i] % 10;
+            int num = nums[i];
+            while (num > 0){
+                int lastDigit = num % 10;
                 digitSum += lastDigit;
-                nums[i] = nums[i] / 10;
+                num = num / 10;
             }
         }
 
         return Math.abs(elSum - digitSum);
+    }
+    // Second highest occurring element
+    // arr = [1,2,3,2,3,4,4,4]
+    // output -> 2 (both 2 & 3 appear second mot times, 2 is smaller)
+    static int secondMostFrequentElement(int[] nums){
+        int maxFreq =  0, secMaxFreq = 0;
+        int maxElement = -1, secMaxElement = -1;
+        int[] visited = new int[nums.length];
+        for (int i = 0; i < nums.length; i++){
+            if (visited[nums[i]] == 0){
+                visited[nums[i]] = 1;
+            }
+            int count = 0;
+            for (int j = 0; j < nums.length; j++){
+                if (nums[i] == nums[j]){
+                    count++;
+                }
+            }
+            if (count > maxFreq){
+                secMaxFreq = maxFreq;
+                maxFreq = count;
+                secMaxElement = maxElement;
+                maxElement = nums[i];
+            } else if (count == maxElement && nums[i] < maxElement) {
+                maxElement = nums[i];
+            } else if (count == secMaxElement && nums[i] < secMaxElement) {
+                secMaxElement = nums[i];
+            }
+        }
+        return secMaxElement;
     }
 }
