@@ -137,7 +137,7 @@ public class BasicArray {
     static int secondMostFrequentElement(int[] nums){
         int maxFreq = 0, secMaxFreq = 0;
         int maxElement = -1, secMaxElement = -1;
-        int[] visited = new int[10000001];
+        int[] visited = new int[100001];
         for (int i = 0; i < nums.length; i++) {
             if (visited[nums[i]] == 1) {
                 continue;
