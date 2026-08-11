@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BasicArray {
     public static void main(String[] args) {
         int n = 4;
-        int[] arr = {3,1,2,3,5,5};
+        int[] arr = {3, 1, 1, 3, 5,3, 5};
 
         // traversing the array
 //        for (int i = 0; i < arr.length; i++){
@@ -13,25 +13,27 @@ public class BasicArray {
 //        }
         //System.out.println(sumOfArrayElements(arr, n));
         //System.out.println(countOfOddElement(arr, n));
-       // System.out.println(checkSortedArray(arr, n));
-       // reverseAnArray(arr, n);
-       // System.out.println(differenceOfSum(arr));
-        System.out.println(secondMostFrequentElement(arr));
+        // System.out.println(checkSortedArray(arr, n));
+        // reverseAnArray(arr, n);
+        // System.out.println(differenceOfSum(arr));
+        //System.out.println(secondMostFrequentElement(arr));
+        System.out.println(sumOfMaxMinFrequency(arr));
     }
 
-    static int sumOfArrayElements(int arr[], int n){
+    static int sumOfArrayElements(int arr[], int n) {
         int sum = 0;
 
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
 
             sum = sum + arr[i];
         }
         return sum;
     }
-    static int countOfOddElement(int arr[], int n){
+
+    static int countOfOddElement(int arr[], int n) {
         int count = 0;
 
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
             if (arr[i] % 2 != 0) count++;
         }
         return count;
@@ -40,9 +42,9 @@ public class BasicArray {
 
     // Reverse Array
     // arr[] = {1,2,3} -> {3,2,1}
-    static void reverseAnArray(int arr[], int n){
+    static void reverseAnArray(int arr[], int n) {
 
-       // int[] temp = new int[n];
+        // int[] temp = new int[n];
 
 //        for (int i = 0; i < n; i++){
 //            temp[n - i - 1] = arr[i];
@@ -59,7 +61,7 @@ public class BasicArray {
             {1,2,3} -> left[0],right[n-1] swap left to right until they collide then stop
             Two-Pointer approach
          */
-        int left = 0 , right = n - 1;
+        int left = 0, right = n - 1;
 
         while (left < right) {
 
@@ -73,7 +75,7 @@ public class BasicArray {
             right--;
         }
 
-      // Print the reversed array
+        // Print the reversed array
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
         }
@@ -90,9 +92,9 @@ public class BasicArray {
         System.out.println();
     }
 
-    static boolean checkSortedArray(int arr[], int n){
+    static boolean checkSortedArray(int arr[], int n) {
 
-        for (int i = 0; i < n-1; i++){
+        for (int i = 0; i < n - 1; i++) {
             // T.c -> O(n*n)
 //            for (int j = i +1; j < n; j++) {
 //                if (arr[i] > arr[j]) {
@@ -102,27 +104,28 @@ public class BasicArray {
 
             // Optimized to O(n)
             if (arr[i] > arr[i + 1]) {
-                    return false;
-                }
+                return false;
+            }
 
         }
         return true;
     }
+
     //Input: nums = [1,2,3,4]
     //Output: 0
     //Explanation:
     //The element sum of nums is 1 + 2 + 3 + 4 = 10.
     //The digit sum of nums is 1 + 2 + 3 + 4 = 10.
     //The absolute difference between the element sum and digit sum is |10 - 10| = 0.
-    static int differenceOfSum(int[] nums){
+    static int differenceOfSum(int[] nums) {
         int elSum = 0, digitSum = 0;
 
-        for (int i = 0; i < nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             elSum += nums[i]; // sum of elements
 
             int num = nums[i];
             // sum of digits
-            while (num > 0){
+            while (num > 0) {
                 int lastDigit = num % 10;
                 digitSum += lastDigit;
                 num = num / 10;
@@ -134,7 +137,7 @@ public class BasicArray {
     // Second highest occurring element
     // arr = [1,2,3,2,3,4,4,4]
     // output -> 2 (both 2 & 3 appear second mot times, 2 is smaller)
-    static int secondMostFrequentElement(int[] nums){
+    static int secondMostFrequentElement(int[] nums) {
         int maxFreq = 0, secMaxFreq = 0;
         int maxElement = -1, secMaxElement = -1;
         int[] visited = new int[100001];
@@ -167,4 +170,32 @@ public class BasicArray {
         }
         return secMaxElement;
     }
+
+    // nums = {1,3,4,3}
+
+    static int sumOfMaxMinFrequency(int[] nums) {
+        int n = nums.length;
+
+        int maxFreq = 0;
+        int minFreq = n;
+
+        int[] visited = new int[100001];
+        for (int i = 0; i < n; i++) {
+            if (visited[nums[i]] == 1) {
+                continue;
+            }
+            int count = 0;
+            visited[nums[i]] = 1;
+            // count frequency
+            for (int j = 0; j < n; j++) {
+                if (nums[i] == nums[j]) {
+                    count++;
+                }
+            }
+            maxFreq = Math.max(maxFreq, count);
+            minFreq = Math.min(minFreq, count);
+        }
+
+        return maxFreq + minFreq;
     }
+}
