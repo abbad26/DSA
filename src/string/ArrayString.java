@@ -1,6 +1,7 @@
 package string;
 
 import java.awt.datatransfer.StringSelection;
+import java.util.Arrays;
 
 public class ArrayString {
     public static void main(String[] args) {
@@ -16,8 +17,12 @@ public class ArrayString {
 //            System.out.println(str+ " is a palindrome");
 //        }
 
-        String strNum = "00546456";
-        System.out.println(largestOddNum(strNum));
+          String strNum = "00546456";
+//        System.out.println(largestOddNum(strNum));
+
+       // String[] inputStr = {"flower","flow","flight","fly"};
+        String[] inputStr = {"f"};
+        System.out.println(largestCommonPrefix(inputStr));
     }
 
     // s = ['a','b','b','a','d'] -> abbad
@@ -62,21 +67,42 @@ public class ArrayString {
     static String largestOddNum(String s){
         int j = -1;
         int n = s.length();
-
-        for (int i = n-1; i > 0; i--){
+        // find rightmost odd digit
+        for (int i = n-1; i >= 0; i--){
             if ((s.charAt(i) - '0')%2 == 1) {
                 j = i;
                 break;
             }
         }
-
-        if (j == -1) return " ";
+        // return empty string if Odd digit not found
+        if (j == -1) return "";
 
         int i = 0;
+        // check leading zer and exclude
         while (i < n){
             if (s.charAt(i) != '0') break;
             i++;
         }
         return s.substring(i, j+1);
+    }
+
+    // longest common prefix
+    //Input: str = ["flower","flow","flight"]
+    //Output: "fl"
+
+    static String largestCommonPrefix(String[] str){
+        int n = str.length;
+        Arrays.sort(str);
+
+        String first = str[0], last = str[n - 1];
+
+        String ans = "";
+
+        for (int i = 0; i <= Math.min(first.length()-1, last.length()-1); i++){
+            if (first.charAt(i) != last.charAt(i)) break;
+
+            ans += first.charAt(i);
+        }
+        return ans;
     }
 }
