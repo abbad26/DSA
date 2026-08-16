@@ -24,6 +24,7 @@ public class BasicMath {
        // System.out.println(lcm(6,9));
        // System.out.println(Arrays.toString(countDivisor(15)));
        // System.out.println(strongNumber(14));
+        System.out.println(fib(6));
 
 
     }
@@ -264,6 +265,20 @@ public class BasicMath {
         }
 
         return result;
+    }
+
+    // fibonacci = 0,1,1,2,3,5,8...
+    // n = 3 , fib(3) -> fib(3-1)+fib(3-2) -> 1+1 = 2
+
+    static int fib(int n){
+        if (n <= 1) return n;
+        int last = 1, sLast = 0, current = 0;
+        for (int i = 2; i<= n; i++){
+            current = last + sLast;
+            sLast = last;
+            last = current;
+        }
+        return current;
     }
 
 //    static ArrayList<Integer> countDivisor(int num){
