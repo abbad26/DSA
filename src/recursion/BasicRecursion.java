@@ -15,7 +15,11 @@ public class BasicRecursion {
        // System.out.println(factorialOfN(5));
        // System.out.println(getArraySum(arr));
        // System.out.println(fib(6));
-        System.out.println(reverseString(s));
+       // System.out.println(reverseString(s));
+       // System.out.println(palindrome("hannah"));
+
+        int num = 13;
+        System.out.println(checkPrime(num));
     }
 
 
@@ -75,5 +79,36 @@ public class BasicRecursion {
         s.set(right, temp);
 
         reverseStr(s, left+1, right-1);
+    }
+
+    // palindrome
+
+    static boolean palindrome(String s) {
+        return isPalindrome(s, 0, s.length()-1);
+    }
+
+
+    static private boolean isPalindrome(String s, int left, int right){
+        if (left >= right) return true;
+
+        if (s.charAt(left) != s.charAt(right)) return false;
+
+        return isPalindrome(s, left+1, right-1);
+    }
+
+
+    // check prime number
+
+    static boolean checkPrime(int num){
+        if (num <= 1) return false;
+
+        return isPrime(num, 2);
+    }
+    static boolean isPrime(int num, int i){
+        if (i > Math.sqrt(num)) return true;
+
+        if (num % i == 0) return false;
+
+        return isPrime(num, i + 1);
     }
 }
