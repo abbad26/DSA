@@ -18,8 +18,9 @@ public class BasicRecursion {
        // System.out.println(reverseString(s));
        // System.out.println(palindrome("hannah"));
 
-        int num = 13;
-        System.out.println(checkPrime(num));
+        int num = 436;
+        //System.out.println(checkPrime(num));
+        System.out.println(addDigits(num));
     }
 
 
@@ -110,5 +111,23 @@ public class BasicRecursion {
         if (num % i == 0) return false;
 
         return isPrime(num, i + 1);
+    }
+
+
+    // sum of digits
+    // Given an integer num, repeatedly add all its digits until the result has only one digit, and return it.
+    // n = 326 -> 3+2+6 -> 11 ->1+1 -> 2 return
+
+    static int addDigits(int num){
+        if (num < 10){
+            return num;
+        }
+        int sum = 0;
+        while (num != 0){
+            sum = sum + (num%10);
+            num /= 10;
+        }
+
+        return addDigits(sum);
     }
 }

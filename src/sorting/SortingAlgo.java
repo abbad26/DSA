@@ -2,12 +2,13 @@ package sorting;
 
 import java.util.Arrays;
 
-public class SelectionSort {
+public class SortingAlgo {
     public static void main(String[] args) {
 
         int[] arr = {5,2,1,3,2};
         System.out.println(Arrays.toString(selectionSort(arr)));
         System.out.println(Arrays.toString(bubbleSort(arr)));
+        System.out.println(Arrays.toString(insertionSort(arr)));
     }
 
 
@@ -51,6 +52,24 @@ public class SelectionSort {
 
             if (!swap){
                 break;
+            }
+        }
+        return nums;
+    }
+
+
+    // Insertion Sort  -> takes an element and place it in its correct order
+
+    static int[] insertionSort(int[] nums){
+        int n = nums.length;
+
+        for (int i = 0; i < n; i++){
+            int j = i;
+            while (j > 0 && nums[j-1] > nums[j]){
+                int temp = nums[j-1];
+                nums[j-1] = nums[j];
+                nums[j] = temp;
+                j--;
             }
         }
         return nums;
