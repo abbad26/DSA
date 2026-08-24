@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BasicArray {
     public static void main(String[] args) {
         int n = 4;
-        int[] arr = {3, 1, 1, 3, 5,3, 5};
+        int[] arr = {3, 100, 1, 101, 5,3, 5};
 
         // traversing the array
 //        for (int i = 0; i < arr.length; i++){
@@ -18,6 +18,21 @@ public class BasicArray {
         // System.out.println(differenceOfSum(arr));
         //System.out.println(secondMostFrequentElement(arr));
         System.out.println(sumOfMaxMinFrequency(arr));
+        System.out.println(largestArrayElement(arr));
+    }
+
+    static int largestArrayElement(int[] nums){
+        int largest = Integer.MIN_VALUE;
+
+        for (int i = 0; i < nums.length; i++){
+
+            if (nums[i] >= largest ){
+                largest = nums[i];
+            }
+        }
+
+        return largest;
+
     }
 
     static int sumOfArrayElements(int arr[], int n) {
