@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BasicArray {
     public static void main(String[] args) {
         int n = 4;
-        int[] arr = {3, 100, 1, 101, 5,3, 5};
+        int[] arr = { 15};
 
         // traversing the array
 //        for (int i = 0; i < arr.length; i++){
@@ -19,8 +19,48 @@ public class BasicArray {
         //System.out.println(secondMostFrequentElement(arr));
         System.out.println(sumOfMaxMinFrequency(arr));
         System.out.println(largestArrayElement(arr));
+        System.out.println(secondMaxElement(arr));
     }
+    // Second max element in an array
 
+    static int secondMaxElement(int[] nums){
+        int n= nums.length;
+
+        // if array has only one element
+        if (n < 2){
+            return -1;
+        }
+
+        int maxElement = Integer.MIN_VALUE;
+        int secMaxElement = Integer.MIN_VALUE;
+
+        for (int i = 0; i< n; i++){
+            if ( nums[i] > maxElement){
+                secMaxElement = maxElement;
+                maxElement = nums[i];
+            } else if (nums[i] > secMaxElement && nums[i] != maxElement) {
+                secMaxElement = nums[i];
+            }
+        }
+        if(secMaxElement == Integer.MIN_VALUE){
+            return -1;
+        }
+        return secMaxElement; // T.c -> O(n
+
+        // T.C -> 0(nlogn) bcz of sorting
+//        Arrays.sort(nums);
+//        int maxElement = nums[n -1];
+//        int secondMaxEle = -1;
+//
+//        for (int i = n-2; i >= 0; i--){
+//
+//            if (nums[i] != maxElement){
+//                secondMaxEle = nums[i];
+//                break;
+//            }
+//        }
+
+    }
     static int largestArrayElement(int[] nums){
         int largest = Integer.MIN_VALUE;
 
