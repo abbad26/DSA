@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class BasicArray {
     public static void main(String[] args) {
         int n = 4;
-        int[] arr = { 15};
+        int[] arr = {5,2,3,1};
 
         // traversing the array
 //        for (int i = 0; i < arr.length; i++){
@@ -17,12 +17,48 @@ public class BasicArray {
         // reverseAnArray(arr, n);
         // System.out.println(differenceOfSum(arr));
         //System.out.println(secondMostFrequentElement(arr));
-        System.out.println(sumOfMaxMinFrequency(arr));
-        System.out.println(largestArrayElement(arr));
-        System.out.println(secondMaxElement(arr));
+//        System.out.println(sumOfMaxMinFrequency(arr));
+//        System.out.println(largestArrayElement(arr));
+//        System.out.println(secondMaxElement(arr));
+//        System.out.println(countMaxConsecutiveOnes(arr));
+        //rotateArrayByOne(arr);
     }
-    // Second max element in an array
 
+    // rotate Array by one
+    // arr = {5,2,4,3,6} -> output = {2,4,3,6,5}
+
+    static void rotateArrayByOne(int[] arr){
+        int n = arr.length;
+        int temp = arr[0];
+        for (int i = 1; i < n; i++) {
+            arr[i - 1] = arr[i];
+        }
+        arr[n - 1] = temp;
+        System.out.println(Arrays.toString(arr));
+    }
+
+    // binary number
+    // return maximum consecutive 1s in an array
+    static int countMaxConsecutiveOnes(int[] arr){
+
+        int count = 0 , oneCounts = 0;
+
+        for (int j : arr) {
+            if (j == 0) {
+                count = 0;
+            } else {
+                count++;
+            }
+//            if (count > oneCounts){
+//                oneCounts = count;
+//            }
+            oneCounts = Math.max(oneCounts, count);
+        }
+
+        return oneCounts;
+    }
+
+    // Second max element in an array
     static int secondMaxElement(int[] nums){
         int n= nums.length;
 
