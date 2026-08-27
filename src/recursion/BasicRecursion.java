@@ -1,5 +1,6 @@
 package recursion;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class BasicRecursion {
@@ -21,6 +22,11 @@ public class BasicRecursion {
         int num = 436;
         //System.out.println(checkPrime(num));
         System.out.println(addDigits(num));
+
+        rotateArray(arr, 2);
+        for (int nums: arr){
+            System.out.print(nums+ " ");
+        }
     }
 
 
@@ -129,5 +135,38 @@ public class BasicRecursion {
         }
 
         return addDigits(sum);
+    }
+
+
+    // rotate array by k places
+    // arr = {1,2,3,4,5}, k = 2 -> o/p = {3,4,5,1,2}
+
+    static void rotateArray(int[] nums, int k){
+        int n = nums.length;
+        k = k % n;
+
+        // reverse first k elements
+        reverseArray(nums, 0, k-1);
+
+        // reverse n-k to n
+        reverseArray(nums, k, n-1);
+
+        // reverse entire array
+        reverseArray(nums, 0, n-1);
+
+        // t.c -> o(n) , s.c -> O(1)
+    }
+
+    // reverse an array
+    static private void reverseArray(int[] nums, int start, int end){
+
+        while (start < end){
+            int temp = nums[start];
+            nums[start] = nums[end];
+            nums[end] = temp;
+
+            start++;
+            end--;
+        }
     }
 }

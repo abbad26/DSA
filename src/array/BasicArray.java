@@ -22,6 +22,7 @@ public class BasicArray {
 //        System.out.println(secondMaxElement(arr));
 //        System.out.println(countMaxConsecutiveOnes(arr));
         //rotateArrayByOne(arr);
+        rotateArray(arr, 2);
     }
 
     // rotate Array by one
@@ -35,6 +36,31 @@ public class BasicArray {
         }
         arr[n - 1] = temp;
         System.out.println(Arrays.toString(arr));
+    }
+
+    // rotate array by k places
+    // arr = {1,2,3,4,5}, k = 2 -> o/p = {3,4,5,1,2}
+
+    static void rotateArray(int[] nums, int k){
+        int n = nums.length;
+        k = k % n; //
+        int[] temp = new int[k];
+        for (int i = 0; i < k; i++){
+            temp[i] = nums[i];
+        }
+
+        for (int  i = k; i < n; i++){
+            nums[i - k] = nums[i];
+        }
+
+        for (int i = 0; i < k; i++){
+            nums[n - k + i] = temp[i];
+        }
+
+        System.out.println(Arrays.toString(nums));
+
+       // T.c -> O(n)
+        // s.c -> O(k) -> optimize this by reversing the array
     }
 
     // binary number
