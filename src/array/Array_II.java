@@ -5,7 +5,7 @@ import java.util.Arrays;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {0,1,3,2,5};
+        int[] arr = {0,0,1,3,5,5};
        // shiftZerosToEnd(arr);
 
 //        rotateArray(arr, 2);
@@ -13,7 +13,8 @@ public class Array_II {
 //            System.out.print(nums+ " ");
 //        }
 
-        System.out.println(missingNumber(arr));
+       // System.out.println(missingNumber(arr));
+        System.out.println(removeDuplicates(arr));
     }
 
     static void shiftZerosToEnd(int[] nums){
@@ -84,6 +85,24 @@ public class Array_II {
         }
 
         return sum - arraySum;
+    }
+
+    // Remove Duplicates from Sorted Array and return number of unique element
+    // arr = {1,1,2,4,5,5} -> o/p = {1,2,4,5,_,_}
+    // using two pointer
+    // T.c -> O(n), s.c -> O(1)
+    static int removeDuplicates(int[] nums){
+
+        int left = 0;
+        for (int right = 1; right < nums.length; right++){
+
+            if (nums[left] != nums[right] ){
+                left++;
+
+                nums[left] = nums[right];
+            }
+        }
+        return left + 1;
     }
 
 }
