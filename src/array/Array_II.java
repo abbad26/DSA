@@ -1,11 +1,14 @@
 package array;
 
 import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Array_II {
 
     public static void main(String[] args) {
         int[] arr = {0,0,1,3,5,5};
+        int[] arr1 = {2,3,4};
        // shiftZerosToEnd(arr);
 
 //        rotateArray(arr, 2);
@@ -14,7 +17,8 @@ public class Array_II {
 //        }
 
        // System.out.println(missingNumber(arr));
-        System.out.println(removeDuplicates(arr));
+      //  System.out.println(removeDuplicates(arr));
+        System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
     }
 
     static void shiftZerosToEnd(int[] nums){
@@ -103,6 +107,25 @@ public class Array_II {
             }
         }
         return left + 1;
+    }
+
+    // union of two array
+    static int[] unionOfArray(int[] nums1, int[] nums2){
+
+        Set<Integer> set = new TreeSet<>();
+
+        for (int num : nums1){
+            set.add(num);
+        }
+        for (int num: nums2){
+            set.add(num);
+        }
+        int[] union = new int[set.size()];
+        int index = 0;
+        for (int num: set){
+            union[index++] = num;
+        }
+        return union;
     }
 
 }
