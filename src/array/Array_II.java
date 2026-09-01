@@ -1,13 +1,11 @@
 package array;
 
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {0,0,1,3,5,5};
+        int[] arr = {0,1,3,4,5};
         int[] arr1 = {2,3,4};
        // shiftZerosToEnd(arr);
 
@@ -16,7 +14,7 @@ public class Array_II {
 //            System.out.print(nums+ " ");
 //        }
 
-       // System.out.println(missingNumber(arr));
+        System.out.println(missingNumber(arr));
       //  System.out.println(removeDuplicates(arr));
         System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
     }
@@ -85,11 +83,16 @@ public class Array_II {
 
         for (int i = 0; i < n; i++){
 
-            arraySum += nums[i];
+            if (nums[i] != i){
+                return i;
+            }
+//            arraySum += nums[i];
         }
 
-        return sum - arraySum;
+        return -1;
     }
+
+
 
     // Remove Duplicates from Sorted Array and return number of unique element
     // arr = {1,1,2,4,5,5} -> o/p = {1,2,4,5,_,_}
@@ -110,7 +113,7 @@ public class Array_II {
     }
 
     // union of two array
-    static int[] unionOfArray(int[] nums1, int[] nums2){
+    static int[] unionArray(int[] nums1, int[] nums2){
 
         Set<Integer> set = new TreeSet<>();
 
@@ -128,5 +131,52 @@ public class Array_II {
         return union;
     }
 
+    // Union of array
+    // two pointer approach
+
+    // t.c -> O(n+m) <- s.c
+      static int[] unionOfArray(int[] nums1, int[] nums2){
+
+        List<Integer> unionList = new ArrayList<>();
+        int i = 0;
+        int j = 0;
+        int n = nums1.length;
+        int m = nums2.length;
+        while (i < n && j < m){
+
+            if (nums1[i] <= nums1[j] ){
+               if (unionList.isEmpty() || unionList.get(unionList.size() - 1)!= nums1[i]){
+                   unionList.add(nums1[i]);
+               }
+                i++;
+            } else {
+                if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]){
+                    unionList.add(nums2[j]);
+                }
+                j++;
+            }
+
+        }
+
+        while (i < n){
+            if (unionList.isEmpty() || unionList.get(unionList.size() - 1)!= nums1[i]){
+                unionList.add(nums1[i]);
+            }
+            i++;
+        }
+
+        while (j < m){
+            if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]){
+                unionList.add(nums2[j]);
+            }
+            j++;
+        }
+
+        int[] union = new int[unionList.size()];
+        for (int k = 0; k < unionList.size(); k++){
+            union[k] = unionList.get(k);
+        }
+        return union;
+    }
 }
 
