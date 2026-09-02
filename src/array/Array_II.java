@@ -5,8 +5,8 @@ import java.util.*;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {0,1,3,4,5};
-        int[] arr1 = {2,3,4};
+        int[] arr = {-30,5};
+        int[] arr1 = {-45,-30,4};
        // shiftZerosToEnd(arr);
 
 //        rotateArray(arr, 2);
@@ -17,6 +17,7 @@ public class Array_II {
         System.out.println(missingNumber(arr));
       //  System.out.println(removeDuplicates(arr));
         System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
+        System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
     }
 
     static void shiftZerosToEnd(int[] nums){
@@ -177,6 +178,47 @@ public class Array_II {
             union[k] = unionList.get(k);
         }
         return union;
+    }
+
+
+    // Intersection of tow non-decreasing array
+    // Input: nums1 = [1, 2, 2, 3, 5], nums2 = [1, 2, 7]
+    // Output: [1, 2]
+
+    static int[] intersectionOfArray(int[] nums1, int[] nums2){
+
+        List<Integer> intersectionList = new ArrayList<>();
+        int n = nums1.length;
+        int m = nums2.length;
+        int i = 0, j = 0;
+
+        while (i < n && j < m){
+            if (nums1[i] <= nums2[j]){
+                if (nums1[i] == nums2[j]){
+                    intersectionList.add(nums1[i]);
+                    i++;
+                    j++;
+                }else {
+                    i++;
+                }
+            } else {
+                if (nums1[i] != nums2[j]){
+                    j++;
+                } else if (nums1[i] == nums2[j]) {
+                    intersectionList.add(nums1[i]);
+                    i++;
+                    j++;
+                }
+            }
+        }
+
+        int[] intersection = new int[intersectionList.size()];
+
+        for (int k = 0; k < intersectionList.size(); k++){
+            intersection[k] = intersectionList.get(k);
+        }
+
+        return intersection;
     }
 }
 
