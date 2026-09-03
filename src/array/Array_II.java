@@ -5,7 +5,7 @@ import java.util.*;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {-30, 5, 5};
+        int[] arr = {4, 2, 5, 3, 2};
         int[] arr1 = {-45, -30, 4};
         // shiftZerosToEnd(arr);
 
@@ -14,12 +14,13 @@ public class Array_II {
 //            System.out.print(nums+ " ");
 //        }
 
-        System.out.println(missingNumber(arr));
+        //   System.out.println(missingNumber(arr));
         //  System.out.println(removeDuplicates(arr));
-        System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
-        System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
+        //    System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
+        //   System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
 
-        System.out.println(majorityElement(arr));
+        // System.out.println(majorityElement(arr));
+        System.out.println(leaders(arr));
     }
 
     static void shiftZerosToEnd(int[] nums) {
@@ -246,17 +247,40 @@ public class Array_II {
 
         HashMap<Integer, Integer> elementFreq = new HashMap<>();
 
-        for (int i: nums){
+        for (int i : nums) {
             elementFreq.put(i, elementFreq.getOrDefault(i, 0) + 1);
         }
 
-        for (Map.Entry<Integer, Integer> map : elementFreq.entrySet()){
-            if (map.getValue() > n / 2){
+        for (Map.Entry<Integer, Integer> map : elementFreq.entrySet()) {
+            if (map.getValue() > n / 2) {
                 return map.getKey();
             }
         }
 
         return -1;
+    }
+
+    // leaders in an array
+    //Input: nums = [1, 2, 5, 3, 1, 2]
+    //Output: [5, 3, 2] -> rightmost always a leader & element > all elements in its right
+
+    static List<Integer> leaders(int[] nums) {
+        int n = nums.length;
+         int left = n - 2;
+         int right = n - 1;
+        List<Integer> leaderList = new ArrayList<>();
+        leaderList.add(nums[n - 1]);
+        while (left < right && left >= 0){
+
+            if ( leaderList.get(leaderList.size() - 1) < nums[left]){
+                leaderList.add(nums[left]);
+            }
+                left--;
+                right--;
+
+        }
+        Collections.reverse(leaderList);
+        return leaderList;
     }
 }
 
