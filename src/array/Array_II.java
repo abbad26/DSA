@@ -5,9 +5,9 @@ import java.util.*;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {-30,5};
-        int[] arr1 = {-45,-30,4};
-       // shiftZerosToEnd(arr);
+        int[] arr = {-30, 5, 5};
+        int[] arr1 = {-45, -30, 4};
+        // shiftZerosToEnd(arr);
 
 //        rotateArray(arr, 2);
 //        for (int nums: arr){
@@ -15,19 +15,21 @@ public class Array_II {
 //        }
 
         System.out.println(missingNumber(arr));
-      //  System.out.println(removeDuplicates(arr));
+        //  System.out.println(removeDuplicates(arr));
         System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
         System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
+
+        System.out.println(majorityElement(arr));
     }
 
-    static void shiftZerosToEnd(int[] nums){
+    static void shiftZerosToEnd(int[] nums) {
 
         int n = nums.length;
         int left = 0;
 
-        for (int right = 0; right < n; right++ ){
+        for (int right = 0; right < n; right++) {
 
-            if (nums[right] != 0){
+            if (nums[right] != 0) {
                 int temp = nums[left];
                 nums[left] = nums[right];
                 nums[right] = temp;
@@ -43,26 +45,26 @@ public class Array_II {
     // rotate array by k places
     // arr = {1,2,3,4,5}, k = 2 -> o/p = {3,4,5,1,2}
 
-    static void rotateArray(int[] nums, int k){
+    static void rotateArray(int[] nums, int k) {
         int n = nums.length;
         k = k % n;
 
         // reverse first k elements
-        reverseArray(nums, 0, k-1);
+        reverseArray(nums, 0, k - 1);
 
         // reverse n-k to n
-        reverseArray(nums, k, n-1);
+        reverseArray(nums, k, n - 1);
 
         // reverse entire array
-        reverseArray(nums, 0, n-1);
+        reverseArray(nums, 0, n - 1);
 
         // t.c -> o(n) , s.c -> O(1)
     }
 
     // reverse an array
-    static private void reverseArray(int[] nums, int start, int end){
+    static private void reverseArray(int[] nums, int start, int end) {
 
-        while (start < end){
+        while (start < end) {
             int temp = nums[start];
             nums[start] = nums[end];
             nums[end] = temp;
@@ -79,12 +81,12 @@ public class Array_II {
     static int missingNumber(int[] nums) {
         int n = nums.length;
 
-        int sum = (n*(n+1)) / 2;
+        int sum = (n * (n + 1)) / 2;
         int arraySum = 0;
 
-        for (int i = 0; i < n; i++){
+        for (int i = 0; i < n; i++) {
 
-            if (nums[i] != i){
+            if (nums[i] != i) {
                 return i;
             }
 //            arraySum += nums[i];
@@ -94,17 +96,16 @@ public class Array_II {
     }
 
 
-
     // Remove Duplicates from Sorted Array and return number of unique element
     // arr = {1,1,2,4,5,5} -> o/p = {1,2,4,5,_,_}
     // using two pointer
     // T.c -> O(n), s.c -> O(1)
-    static int removeDuplicates(int[] nums){
+    static int removeDuplicates(int[] nums) {
 
         int left = 0;
-        for (int right = 1; right < nums.length; right++){
+        for (int right = 1; right < nums.length; right++) {
 
-            if (nums[left] != nums[right] ){
+            if (nums[left] != nums[right]) {
                 left++;
 
                 nums[left] = nums[right];
@@ -114,19 +115,19 @@ public class Array_II {
     }
 
     // union of two array
-    static int[] unionArray(int[] nums1, int[] nums2){
+    static int[] unionArray(int[] nums1, int[] nums2) {
 
         Set<Integer> set = new TreeSet<>();
 
-        for (int num : nums1){
+        for (int num : nums1) {
             set.add(num);
         }
-        for (int num: nums2){
+        for (int num : nums2) {
             set.add(num);
         }
         int[] union = new int[set.size()];
         int index = 0;
-        for (int num: set){
+        for (int num : set) {
             union[index++] = num;
         }
         return union;
@@ -136,22 +137,22 @@ public class Array_II {
     // two pointer approach
 
     // t.c -> O(n+m) <- s.c
-      static int[] unionOfArray(int[] nums1, int[] nums2){
+    static int[] unionOfArray(int[] nums1, int[] nums2) {
 
         List<Integer> unionList = new ArrayList<>();
         int i = 0;
         int j = 0;
         int n = nums1.length;
         int m = nums2.length;
-        while (i < n && j < m){
+        while (i < n && j < m) {
 
-            if (nums1[i] <= nums1[j] ){
-               if (unionList.isEmpty() || unionList.get(unionList.size() - 1)!= nums1[i]){
-                   unionList.add(nums1[i]);
-               }
+            if (nums1[i] <= nums1[j]) {
+                if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums1[i]) {
+                    unionList.add(nums1[i]);
+                }
                 i++;
             } else {
-                if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]){
+                if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]) {
                     unionList.add(nums2[j]);
                 }
                 j++;
@@ -159,22 +160,22 @@ public class Array_II {
 
         }
 
-        while (i < n){
-            if (unionList.isEmpty() || unionList.get(unionList.size() - 1)!= nums1[i]){
+        while (i < n) {
+            if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums1[i]) {
                 unionList.add(nums1[i]);
             }
             i++;
         }
 
-        while (j < m){
-            if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]){
+        while (j < m) {
+            if (unionList.isEmpty() || unionList.get(unionList.size() - 1) != nums2[j]) {
                 unionList.add(nums2[j]);
             }
             j++;
         }
 
         int[] union = new int[unionList.size()];
-        for (int k = 0; k < unionList.size(); k++){
+        for (int k = 0; k < unionList.size(); k++) {
             union[k] = unionList.get(k);
         }
         return union;
@@ -185,24 +186,24 @@ public class Array_II {
     // Input: nums1 = [1, 2, 2, 3, 5], nums2 = [1, 2, 7]
     // Output: [1, 2]
 
-    static int[] intersectionOfArray(int[] nums1, int[] nums2){
+    static int[] intersectionOfArray(int[] nums1, int[] nums2) {
 
         List<Integer> intersectionList = new ArrayList<>();
         int n = nums1.length;
         int m = nums2.length;
         int i = 0, j = 0;
 
-        while (i < n && j < m){
-            if (nums1[i] <= nums2[j]){
-                if (nums1[i] == nums2[j]){
+        while (i < n && j < m) {
+            if (nums1[i] <= nums2[j]) {
+                if (nums1[i] == nums2[j]) {
                     intersectionList.add(nums1[i]);
                     i++;
                     j++;
-                }else {
+                } else {
                     i++;
                 }
             } else {
-                if (nums1[i] != nums2[j]){
+                if (nums1[i] != nums2[j]) {
                     j++;
                 } else if (nums1[i] == nums2[j]) {
                     intersectionList.add(nums1[i]);
@@ -214,11 +215,48 @@ public class Array_II {
 
         int[] intersection = new int[intersectionList.size()];
 
-        for (int k = 0; k < intersectionList.size(); k++){
+        for (int k = 0; k < intersectionList.size(); k++) {
             intersection[k] = intersectionList.get(k);
         }
 
         return intersection;
+    }
+
+    static int majorityElement(int[] nums) {
+        int n = nums.length;
+
+//        for (int i = 0; i < n; i++) {
+//            int count = 0;
+//
+//            for (int j = 0; j < n; j++) {
+//                if (nums[i] == nums[j]) {
+//                    count++;
+//                }
+//            }
+//
+//            if (count > n / 2) {
+//                return nums[i];
+//            }
+//        }
+//
+//        return -1;
+        // O(n^2) -> t.c
+
+        // using hashmap
+
+        HashMap<Integer, Integer> elementFreq = new HashMap<>();
+
+        for (int i: nums){
+            elementFreq.put(i, elementFreq.getOrDefault(i, 0) + 1);
+        }
+
+        for (Map.Entry<Integer, Integer> map : elementFreq.entrySet()){
+            if (map.getValue() > n / 2){
+                return map.getKey();
+            }
+        }
+
+        return -1;
     }
 }
 
