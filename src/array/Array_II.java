@@ -5,7 +5,7 @@ import java.util.*;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {4, 2, 5, 3, 2};
+        int[] arr = {-4, -2, 5, 3, 2};
         int[] arr1 = {-45, -30, 4};
         // shiftZerosToEnd(arr);
 
@@ -20,7 +20,8 @@ public class Array_II {
         //   System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
 
         // System.out.println(majorityElement(arr));
-        System.out.println(leaders(arr));
+      //  System.out.println(leaders(arr));
+        System.out.println(Arrays.toString(rearrangeArrayBySign(arr)));
     }
 
     static void shiftZerosToEnd(int[] nums) {
@@ -281,6 +282,33 @@ public class Array_II {
         }
         Collections.reverse(leaderList);
         return leaderList;
+    }
+
+    //Rearrange array elements by sign
+    //Input : nums = [2, 4, 5, -1, -3, -4]
+    //Output : [2, -1, 4, -3, 5, -4] , 1st element always positive
+
+    static int[] rearrangeArrayBySign(int[] nums){
+         int n = nums.length;
+        List<Integer> positiveList = new ArrayList<>();
+        List<Integer> negativeList = new ArrayList<>();
+
+        // separate positive and negative array
+        for (int i = 0; i < n; i++){
+            if (nums[i] > 0){
+                positiveList.add(nums[i]);
+            }else {
+                negativeList.add(nums[i]);
+            }
+        }
+
+        // positive at even and negative at odd
+        for (int i = 0; i < n / 2; i++){
+            nums[2*i] = positiveList.get(i);
+            nums[2*i + 1] = negativeList.get(i);
+        }
+
+        return nums;
     }
 }
 
