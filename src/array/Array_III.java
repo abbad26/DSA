@@ -5,11 +5,15 @@ import java.util.*;
 public class Array_III {
     public static void main(String[] args) {
 
-        int[] arr = {1,2,3,5};
+        int[][] arr = {{1, 2, 3}, // Row 0
+                      {4, 5, 6}, // Row 1
+                      {7, 8, 9}};
         // System.out.println(majorityElement(arr));
         //  System.out.println(leaders(arr));
       //  System.out.println(Arrays.toString(rearrangeArrayBySign(arr)));
-        System.out.println(Arrays.toString(twoSum(arr, 4)));
+       // System.out.println(Arrays.toString(twoSum(arr, 4)));
+
+        System.out.println(spiralOrder(arr));
     }
 
 
@@ -116,5 +120,52 @@ public class Array_III {
             }
         }
         return new int[]{};
+    }
+
+    // spiral order
+
+    static List<Integer> spiralOrder(int[][] matrix){
+
+        List<Integer> spiralList = new ArrayList<>();
+
+        // Number of rows
+        int n = matrix.length;
+
+        // Number of columns
+        int m = matrix[0].length;
+
+        // Initialize pointers for traversal
+        int top = 0, left = 0;
+        int bottom = n - 1, right = m - 1;
+
+        while (top <= bottom && left <= right) {
+
+            for (int i = left; i <= right; ++i) {
+                spiralList.add(matrix[top][i]);
+            }
+            top++;
+
+            for (int i = top; i <= bottom; ++i) {
+                spiralList.add(matrix[i][right]);
+            }
+            right--;
+
+
+            if (top <= bottom) {
+             for (int i = right; i >= left ; --i){
+              spiralList.add(matrix[bottom][i]);
+              }
+              bottom--;
+            }
+
+            if (left <= right) {
+             for (int i = bottom; i >= top; --i){
+              spiralList.add(matrix[i][left]);
+             }
+            left++;
+            }
+        }
+
+        return spiralList;
     }
 }
