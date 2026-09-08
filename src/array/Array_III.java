@@ -12,8 +12,8 @@ public class Array_III {
         //  System.out.println(leaders(arr));
       //  System.out.println(Arrays.toString(rearrangeArrayBySign(arr)));
        // System.out.println(Arrays.toString(twoSum(arr, 4)));
-
         System.out.println(spiralOrder(arr));
+        System.out.println(pascalTriangle(6,4));
     }
 
 
@@ -167,5 +167,27 @@ public class Array_III {
         }
 
         return spiralList;
+    }
+
+    // pascal triangle
+
+    static int pascalTriangle(int r, int c){
+        return nCr(r - 1, c - 1);
+    }
+
+    static int nCr(int n, int r){
+
+        if (r > n - r) r = n -r;
+
+        if (r == 1) return n;
+
+        int result = 1;
+        for (int i = 0; i < r; i++){
+
+            result = result * (n - i);
+            result = result / (i +1);
+        }
+
+        return result;
     }
 }

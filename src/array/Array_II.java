@@ -5,7 +5,7 @@ import java.util.*;
 public class Array_II {
 
     public static void main(String[] args) {
-        int[] arr = {-4, -2, 5, 3, 2};
+        int[] arr = {3};
         int[] arr1 = {-45, -30, 4};
         // shiftZerosToEnd(arr);
 
@@ -18,6 +18,7 @@ public class Array_II {
         //  System.out.println(removeDuplicates(arr));
         //    System.out.println(Arrays.toString(unionOfArray(arr, arr1)));
         //   System.out.println(Arrays.toString(intersectionOfArray(arr, arr1)));
+        System.out.println(singleNumber(arr));
 
     }
 
@@ -219,6 +220,19 @@ public class Array_II {
         }
 
         return intersection;
+    }
+
+
+    // single number
+    // every number will appear twice except one , return that number
+    // arr = {1,5,3,1,5} , o/p = 3
+    // using XOR -> n^n = 0, n^0 = n
+    static int singleNumber(int[] nums){
+        int res = 0;
+        for (int num: nums){
+            res = res ^ num;
+        }
+        return res;
     }
 
 

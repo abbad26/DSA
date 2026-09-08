@@ -3,10 +3,10 @@ package hashing;
 public class BasicHashing {
     public static void main(String[] args) {
         int n = 7;
-        int[] arr = {5,4,3,3,1,5,3,7};
+        int[] arr = {5,3,3,7,5};
        // System.out.println(frequencyArray(arr, 5, n));
       //  System.out.println(mostFrequentElement(arr));
-        System.out.println(secondMostFrequentElement(arr));
+       // System.out.println(secondMostFrequentElement(arr));
     }
 
 
@@ -102,4 +102,5 @@ public class BasicHashing {
         }
         return secMaxElement;
     }
+
 }
