@@ -14,6 +14,7 @@ public class Array_III {
        // System.out.println(Arrays.toString(twoSum(arr, 4)));
         System.out.println(spiralOrder(arr));
         System.out.println(pascalTriangle(6,4));
+        System.out.println(Arrays.toString(pascalTriangleII(5)));
     }
 
 
@@ -189,5 +190,16 @@ public class Array_III {
         }
 
         return result;
+    }
+
+    static int[] pascalTriangleII(int r){
+        int[] res = new int[r];
+        res[0] = 1;
+
+        for (int i = 1; i < r; i++){
+            res[i] = res[i - 1] * (r - i);
+            res[i] = res[i] / (i);
+        }
+        return res;
     }
 }
