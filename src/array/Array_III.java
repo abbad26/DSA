@@ -14,7 +14,8 @@ public class Array_III {
        // System.out.println(Arrays.toString(twoSum(arr, 4)));
         System.out.println(spiralOrder(arr));
         System.out.println(pascalTriangle(6,4));
-        System.out.println(Arrays.toString(pascalTriangleII(5)));
+        System.out.println(getRow(4));
+       System.out.println(pascalTriangleIII(4));
     }
 
 
@@ -192,14 +193,58 @@ public class Array_III {
         return result;
     }
 
-    static int[] pascalTriangleII(int r){
-        int[] res = new int[r];
-        res[0] = 1;
+    // Pascal TriangleII
+    //Input: rowIndex = 3
+    //Output: [1,3,3,1]
+    static List<Integer> getRow(int rowIndex){
+//        int[] res = new int[rowIndex];
+//        res[0] = 1;
+//
+//        for (int i = 1; i < rowIndex; i++){
+//            res[i] = res[i - 1] * (rowIndex - i);
+//            res[i] = res[i] / (i);
+//        }
+//        return res;
 
-        for (int i = 1; i < r; i++){
-            res[i] = res[i - 1] * (r - i);
-            res[i] = res[i] / (i);
+        // 0 based indexing
+//        List<Integer> listResult = new ArrayList<>();
+//        long res = 1L;
+//        for (int i = 0; i <= rowIndex; i++){
+//            if (i == 0 || i == rowIndex){
+//                listResult.add(1);
+//            } else {
+//                res = res * (rowIndex -i + 1 );
+//                res = res / i;
+//                listResult.add(Math.toIntExact(res));
+//            }
+//        }
+
+        // 1 based indexing
+        List<Integer> listResult = new ArrayList<>();
+
+        long res = 1;
+        for (int i = 1; i <= rowIndex; i++) {
+
+            listResult.add((int) res);
+
+            res = res * (rowIndex - i);
+            res = res / i;
         }
-        return res;
+
+        return listResult;
+    }
+
+    //Input: n = 5
+    //Output: [[1], [1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1]]
+
+    static List<List<Integer>> pascalTriangleIII(int numsRow) {
+
+        List<List<Integer>> list = new ArrayList<>();
+
+        for (int i = 1; i <= numsRow; i++) {
+            list.add(getRow(i));
+        }
+
+        return list;
     }
 }
