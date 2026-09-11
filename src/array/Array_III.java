@@ -12,10 +12,11 @@ public class Array_III {
         //  System.out.println(leaders(arr));
       //  System.out.println(Arrays.toString(rearrangeArrayBySign(arr)));
        // System.out.println(Arrays.toString(twoSum(arr, 4)));
-        System.out.println(spiralOrder(arr));
-        System.out.println(pascalTriangle(6,4));
-        System.out.println(getRow(4));
-       System.out.println(pascalTriangleIII(4));
+//        System.out.println(spiralOrder(arr));
+//        System.out.println(pascalTriangle(6,4));
+//        System.out.println(getRow(4));
+//       System.out.println(pascalTriangleIII(4));
+       rotateMatrix(arr);
     }
 
 
@@ -246,5 +247,46 @@ public class Array_III {
         }
 
         return list;
+    }
+
+
+
+    // Rotate matrix by 90 degree
+   // Input: matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+    //Output: matrix = [[7, 4, 1], [8, 5, 2], [9, 6, 3]]
+    static void rotateMatrix(int[][] matrix){
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        // Transpose of a matrix
+        int[][] result = new int[m][n];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < m; j++){
+
+                result[j][i] = matrix[i][j];
+            }
+        }
+
+        // reverse every row
+        for (int i = 0; i < n; i++) {
+            int left = 0;
+            int right = m - 1;
+
+            while (left < right) {
+                int temp = result[i][left];
+                result[i][left] = result[i][right];
+                result[i][right] = temp;
+                left++;
+                right--;
+            }
+        }
+
+        for(int i = 0; i < n; i++){
+            for (int j = 0; j < m; j++){
+                System.out.print(result[i][j]+" ");
+            }
+            System.out.println();
+        }
+       // System.out.print(Arrays.deepToString(result));
     }
 }
