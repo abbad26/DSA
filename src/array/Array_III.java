@@ -17,6 +17,7 @@ public class Array_III {
 //        System.out.println(getRow(4));
 //       System.out.println(pascalTriangleIII(4));
        rotateMatrix(arr);
+        //transpose(arr);
     }
 
 
@@ -249,6 +250,19 @@ public class Array_III {
         return list;
     }
 
+    static void transpose(int[][] matrix){
+        int n = matrix.length;
+        int m = matrix[0].length;
+        // Transpose of a matrix
+        int[][] result = new int[m][n];
+        for (int i = 0; i < n; i++){
+            for (int j = 0; j < m; j++){
+
+                result[j][i] = matrix[i][j];
+            }
+        }
+        System.out.println(Arrays.deepToString(result));
+    }
 
 
     // Rotate matrix by 90 degree
@@ -259,11 +273,13 @@ public class Array_III {
         int m = matrix[0].length;
 
         // Transpose of a matrix
-        int[][] result = new int[m][n];
         for (int i = 0; i < n; i++){
-            for (int j = 0; j < m; j++){
+            for (int j = i + 1; j < n; j++){
 
-                result[j][i] = matrix[i][j];
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+
             }
         }
 
@@ -273,20 +289,20 @@ public class Array_III {
             int right = m - 1;
 
             while (left < right) {
-                int temp = result[i][left];
-                result[i][left] = result[i][right];
-                result[i][right] = temp;
+                int temp = matrix[i][left];
+                matrix[i][left] = matrix[i][right];
+                matrix[i][right] = temp;
                 left++;
                 right--;
             }
         }
 
-        for(int i = 0; i < n; i++){
-            for (int j = 0; j < m; j++){
-                System.out.print(result[i][j]+" ");
-            }
-            System.out.println();
-        }
-       // System.out.print(Arrays.deepToString(result));
+//        for(int i = 0; i < n; i++){
+//            for (int j = 0; j < m; j++){
+//                System.out.print(matrix[i][j]+" ");
+//            }
+//            System.out.println();
+//        }
+        System.out.print(Arrays.deepToString(matrix));
     }
 }
