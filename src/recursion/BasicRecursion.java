@@ -6,7 +6,10 @@ import java.util.ArrayList;
 public class BasicRecursion {
     public static void main(String[] args) {
 
-        int[] arr = {1,2,3,4,5};
+        ArrayList<Integer> arr = new ArrayList<>();
+        arr.add(1);
+        arr.add(5);
+        arr.add(2);
        // String s = "Hello";
         ArrayList<Character> s = new ArrayList<>();
         s.add('f');
@@ -18,15 +21,16 @@ public class BasicRecursion {
        // System.out.println(fib(6));
        // System.out.println(reverseString(s));
        // System.out.println(palindrome("hannah"));
+        System.out.println(isSorted(arr));
 
-        int num = 436;
-        //System.out.println(checkPrime(num));
-        System.out.println(addDigits(num));
-
-        rotateArray(arr, 2);
-        for (int nums: arr){
-            System.out.print(nums+ " ");
-        }
+//        int num = 436;
+//        //System.out.println(checkPrime(num));
+//        System.out.println(addDigits(num));
+//
+//        rotateArray(arr, 2);
+//        for (int nums: arr){
+//            System.out.print(nums+ " ");
+//        }
     }
 
 
@@ -168,5 +172,25 @@ public class BasicRecursion {
             start++;
             end--;
         }
+    }
+
+    // check sorted array
+    static boolean isSorted(ArrayList<Integer> nums){
+        if (nums.size() <= 1) return true;
+
+        return sorted(nums, 0, 1);
+    }
+
+    static boolean sorted(ArrayList<Integer> nums, int left, int right){
+
+        if (right >= nums.size()){
+            return true;
+        }
+
+        if (nums.get(left) > nums.get(right)){
+            return false;
+        }
+
+        return sorted(nums, left + 1, right + 1);
     }
 }
