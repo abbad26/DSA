@@ -24,7 +24,8 @@ public class BasicMath {
        // System.out.println(lcm(6,9));
        // System.out.println(Arrays.toString(countDivisor(15)));
        // System.out.println(strongNumber(14));
-        System.out.println(fib(6));
+       // System.out.println(fib(6));
+        System.out.println(sumOfTwoPrimes(73));
 
 
     }
@@ -190,6 +191,28 @@ public class BasicMath {
             if (num % i == 0) return false;
         }
         return true;
+    }
+
+    //Given an integer n, determine whether it can be expressed as the sum of two prime numbers.
+    //You must return true if such a pair exists, otherwise return false
+    // sum of two primes
+    // Input: n = 74
+    //Output: True -> 71 and 3 both are prime
+    static boolean sumOfTwoPrimes(int n){
+        if (n <= 2){
+            return false;
+        }
+        int p = 1;
+        for (int i = n - 1; i > 0; i--){
+            if (isPrime(i)){
+                p = i;
+            }
+            int p2 = n - p;
+            if (isPrime(p2)){
+                return true;
+            }
+        }
+        return false;
     }
 
     // count prime number till num
