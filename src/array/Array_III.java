@@ -305,4 +305,18 @@ public class Array_III {
 //        }
         System.out.print(Arrays.deepToString(matrix));
     }
+
+    // set matrix zeros
+    static void setZeros(int[][] matrix){
+
+        for (int i = 0; i < matrix.length; i++){
+
+            for (int j = 0; j < matrix[0].length; j++){
+
+                if (matrix[i][j] == 0){
+                    
+                }
+            }
+        }
+    }
 }
