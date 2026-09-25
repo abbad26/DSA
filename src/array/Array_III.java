@@ -6,8 +6,8 @@ public class Array_III {
     public static void main(String[] args) {
 
         int[][] arr = {{1, 2, 3}, // Row 0
-                      {4, 5, 6}, // Row 1
-                      {7, 8, 9}};
+                      {4, 0, 6}, // Row 1
+                      {7, 8, 0}};
         // System.out.println(majorityElement(arr));
         //  System.out.println(leaders(arr));
       //  System.out.println(Arrays.toString(rearrangeArrayBySign(arr)));
@@ -16,8 +16,16 @@ public class Array_III {
 //        System.out.println(pascalTriangle(6,4));
 //        System.out.println(getRow(4));
 //       System.out.println(pascalTriangleIII(4));
-       rotateMatrix(arr);
+      // rotateMatrix(arr);
         //transpose(arr);
+        setZeros(arr);
+        for (int[] row: arr){
+
+            for (int n: row){
+                System.out.print(n+" ");
+            }
+            System.out.println();
+        }
     }
 
 
@@ -307,16 +315,37 @@ public class Array_III {
     }
 
     // set matrix zeros
+    //Input: matrix = [[1,1,1],[1,0,1],[1,1,1]]
+    //Output: [[1,0,1],[0,0,0],[1,0,1]]
     static void setZeros(int[][] matrix){
+
+        int n = matrix.length;
+        int m = matrix[0].length;
+
+        boolean[] rows = new boolean[n];
+        boolean[] cols = new boolean[m];
+
+        // scan zeros
+        for (int i = 0; i < matrix.length; i++){
+            for (int j = 0; j < matrix[0].length; j++){
+
+                if (matrix[i][j] == 0){
+                    rows[i] = true;
+                    cols[j] = true;
+                }
+            }
+        }
 
         for (int i = 0; i < matrix.length; i++){
 
             for (int j = 0; j < matrix[0].length; j++){
 
-                if (matrix[i][j] == 0){
-                    
+                if (rows[i] || cols[j]){
+                    matrix[i][j] = 0;
                 }
             }
         }
+
+
     }
 }
