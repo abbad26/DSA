@@ -431,6 +431,7 @@ public class Array_III {
 //            }
 //        }
 
+        // t.c ->
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<>();
 
@@ -464,11 +465,6 @@ public class Array_III {
             }
         }
         return result;
-
-
-
-
-
     }
 
 
