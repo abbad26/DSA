@@ -28,7 +28,7 @@ public class Array_III {
 //            System.out.println();
 //        }
 
-      //  sortZeroOneTwo(array);
+        sortZeroOneTwo(array);
 
     }
 
@@ -49,7 +49,6 @@ public class Array_III {
 //                return nums[i];
 //            }
 //        }
-//
 //        return -1;
         // O(n^2) -> t.c
 
@@ -69,7 +68,6 @@ public class Array_III {
 
         return -1;
     }
-
     // leaders in an array
     //Input: nums = [1, 2, 5, 3, 1, 2]
     //Output: [5, 3, 2] -> rightmost always a leader & element > all elements in its right
@@ -110,7 +108,6 @@ public class Array_III {
                 negativeList.add(nums[i]);
             }
         }
-
         // positive at even and negative at odd
         for (int i = 0; i < n / 2; i++){
             nums[2*i] = positiveList.get(i);
