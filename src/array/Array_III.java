@@ -32,6 +32,8 @@ public class Array_III {
 
     }
 
+    // Input: nums = [7, 0, 0, 1, 7, 7, 2, 7, 7]
+    //Output: 7
 
     static int majorityElement(int[] nums) {
         int n = nums.length;
